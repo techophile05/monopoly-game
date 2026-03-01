@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monopoly India - Game</title>
+  <link rel="stylesheet" href="/css/game.css">
+</head>
+<body>
+  <div class="game-container">
+    <div class="left-panel">
+      <div class="panel-title">Players</div>
+      <div id="players-panel"></div>
+      <div class="pool-display">
+        <div class="pool-label">Free Parking Pool</div>
+        <div class="pool-amount" id="pool-amount">&#8377;0</div>
+      </div>
+      <div class="side-actions" id="side-actions"></div>
+      <div class="my-properties">
+        <div class="panel-title">My Properties</div>
+        <div id="my-props-list"></div>
+      </div>
+    </div>
+
+    <div class="center-panel">
+      <div class="board" id="board">
+        <div class="board-center">
+          <div class="board-center-logo">
+            MONOPOLY<span class="india">INDIA</span>
+          </div>
+          <div class="turn-indicator" id="turn-indicator"></div>
+          <div class="dice-area">
+            <div class="dice-container">
+              <div class="die" id="die1">-</div>
+              <div class="die" id="die2">-</div>
+            </div>
+            <button class="btn-roll" id="btn-roll" disabled>Roll Dice</button>
+            <div class="action-buttons" id="action-buttons"></div>
+            <div id="card-display-area"></div>
+          </div>
+        </div>
+        <div class="token-container" id="token-container"></div>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="chat-panel">
+        <div class="chat-tabs">
+          <button class="chat-tab active" data-chat-tab="chat">Chat</button>
+          <button class="chat-tab" data-chat-tab="log">Game Log</button>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-messages" id="log-messages" style="display:none"></div>
+        <div class="chat-input-area">
+          <input type="text" id="chat-input" placeholder="Type a message..." maxlength="300" />
+          <button id="btn-send-chat">Send</button>
+        </div>
+      </div>
+
+      <div class="trade-panel">
+        <div class="panel-title">Trade</div>
+        <div class="trade-row">
+          <label for="trade-target">Player</label>
+          <select id="trade-target"></select>
+        </div>
+        <div class="trade-groups">
+          <div class="trade-group">
+            <div class="trade-group-title">You Give</div>
+            <div class="trade-list" id="trade-offer-list"></div>
+            <input type="number" id="trade-cash-offer" min="0" value="0" />
+          </div>
+          <div class="trade-group">
+            <div class="trade-group-title">You Get</div>
+            <div class="trade-list" id="trade-request-list"></div>
+            <input type="number" id="trade-cash-request" min="0" value="0" />
+          </div>
+        </div>
+        <button class="btn-trade-send" id="btn-send-trade">Send Trade Offer</button>
+        <div class="trade-incoming" id="trade-incoming"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="prop-modal">
+    <div class="modal">
+      <div id="prop-modal-root"></div>
+    </div>
+  </div>
+
+  <div class="game-over-overlay" id="game-over">
+    <div class="game-over-content">
+      <div class="trophy">&#127942;</div>
+      <h2 id="winner-name">Winner!</h2>
+      <p>has won the game!</p>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="/js/board.js"></script>
+  <script src="/js/chat.js"></script>
+  <script src="/js/property-ui-react.js"></script>
+  <script src="/js/game.js"></script>
+</body>
+</html>

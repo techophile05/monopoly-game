@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monopoly India</title>
+  <link rel="stylesheet" href="/css/lobby.css">
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <h1>🇮🇳 MONOPOLY <span>INDIA</span></h1>
+      <p class="subtitle">The Great Indian Property Game</p>
+    </div>
+
+    <div id="lobby" class="card">
+      <div class="tabs">
+        <button class="tab active" data-tab="create">Create Game</button>
+        <button class="tab" data-tab="join">Join Game</button>
+      </div>
+
+      <div id="tab-create" class="tab-content active">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="create-name" placeholder="Enter your name" maxlength="20" />
+        </div>
+        <button id="btn-create" class="btn btn-primary">Create Room</button>
+      </div>
+
+      <div id="tab-join" class="tab-content">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="join-name" placeholder="Enter your name" maxlength="20" />
+        </div>
+        <div class="form-group">
+          <label>Room Code</label>
+          <input type="text" id="join-code" placeholder="e.g. ABC123" maxlength="6" style="text-transform:uppercase" />
+        </div>
+        <button id="btn-join" class="btn btn-primary">Join Room</button>
+      </div>
+
+      <div id="error-msg" class="error" style="display:none"></div>
+    </div>
+
+    <div id="waiting-room" class="card" style="display:none">
+      <h2>Room: <span id="room-code"></span></h2>
+      <div class="share-link">
+        <input type="text" id="share-url" readonly />
+        <button id="btn-copy" class="btn btn-small">Copy Link</button>
+      </div>
+
+      <div id="players-list" class="players-list"></div>
+
+      <div id="settings-panel" class="settings-panel" style="display:none">
+        <h3>⚙️ Game Settings</h3>
+        <div class="setting-row">
+          <label>Starting Cash (₹)</label>
+          <input type="number" id="set-cash" value="1500" min="500" max="50000" step="100" />
+        </div>
+        <div class="setting-row">
+          <label>Cash Limit (₹, 0 = unlimited)</label>
+          <input type="number" id="set-cash-limit" value="0" min="0" max="100000" step="100" />
+        </div>
+        <div class="setting-row">
+          <label>GO Bonus (₹)</label>
+          <input type="number" id="set-go" value="200" min="0" max="1000" step="50" />
+        </div>
+        <div class="setting-row">
+          <label>Vacation Cash (Free Parking)</label>
+          <div class="toggle-group">
+            <input type="checkbox" id="set-vacation" checked />
+            <label for="set-vacation">Enabled</label>
+          </div>
+        </div>
+        <div class="setting-row">
+          <label>Vacation Cash Amount (₹)</label>
+          <input type="number" id="set-vacation-amt" value="500" min="0" max="5000" step="100" />
+        </div>
+        <div class="setting-row">
+          <label>Collect Rent in Jail</label>
+          <div class="toggle-group">
+            <input type="checkbox" id="set-jail-rent" checked />
+            <label for="set-jail-rent">Enabled</label>
+          </div>
+        </div>
+        <div class="setting-row">
+          <label>Jail Bail Amount (₹)</label>
+          <input type="number" id="set-bail" value="50" min="0" max="500" step="10" />
+        </div>
+        <button id="btn-save-settings" class="btn btn-small">Save Settings</button>
+      </div>
+
+      <button id="btn-start" class="btn btn-primary" style="display:none">Start Game</button>
+      <p id="waiting-msg" class="waiting-text">Waiting for host to start...</p>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/lobby.js"></script>
+</body>
+</html>
